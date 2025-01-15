@@ -1,28 +1,27 @@
-import fs from 'fs'
+import fs from 'fs/promises'
+
+let newDirName = 'new-project'
+let fileContent = '<h1>CLI Tool</h1><h2>This is my first CLI tool</h2>'
+let htmlPath = `${newDirName}/index.html`
+let cssPath = `${newDirName}/styles/style.css`
+let jsPath = `${newDirName}/scripts/main.js`
 
 // Create a new directory 
-
-async function makeDir() {
-    const newDir = await fs.mkdir('new-project', () => {
-        try {
-            console.log(newDir)
-            return newDir
-    
-        } catch (error) {
-            if (error) throw error
-        }
-    })
+const makeDir = async () => {
+    try {
+        await fs.mkdir(newDirName)
+        await writeToFile()
+    } catch (error) {
+        if(error) throw error
+    }
 }
 makeDir()
 
-// Push a new file to directory
-
-
-// Write to file
-// let data = ''
-// fs.writeFile('./project/index.html', data, 'utf8', (err) => {
-//     if(err) throw err;
-
-//     // Print out data added to (file name)
-//     console.log('Data added to file')
-// })
+// Create new file in the new directory
+const writeToFile = async () => {
+    try {
+        await fs.writeFile(htmlPath, fileContent, { flag: 'a+' })
+    } catch (error) {
+        if(error) throw error
+    }
+}
