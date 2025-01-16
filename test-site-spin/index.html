@@ -1,7 +1,4 @@
-import fs from 'fs/promises'
-
-// Placeholder HTML content
-let htmlFileContent = `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,13 +10,4 @@ let htmlFileContent = `<!DOCTYPE html>
 <body>
     <h1 class="title">Thank you for using Spin Site!</h1>
 </body>
-</html>`
-
-export const createHtmlFile = async (path) => {
-    // Create HTML file
-    try {
-        await fs.writeFile(path, htmlFileContent, { flag: 'a+' })
-    } catch (error) {
-        if(error) throw error
-    }
-}
+</html>
