@@ -4,24 +4,7 @@ import { cssDirectoryPath } from '../index.js'
 let cssContent = `CSS content`
 
 export const createCss = async () => {
-    // Create HTML folder
-    await createCssFolder()
-    // await createCssFile(cssDirectoryPath)
-
+    // Create CSS folder and file
+    await fs.mkdir(cssDirectoryPath)
+    await fs.writeFile(`${cssDirectoryPath}/style.css`, cssContent, {flag: 'a+'})
 }
-
-const createCssFolder = async () => {
-    try {
-        await fs.mkdir(cssDirectoryPath)
-    } catch (error) {
-        if(error) throw error
-    }
-}
-
-// const createCssFile = async (path) => {
-//     try {
-//         await fs.writeFile(path, cssContent, {flag: 'a+'})
-//     } catch (error) {
-//         if (error) throw error
-//     }
-// }

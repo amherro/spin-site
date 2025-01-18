@@ -4,6 +4,7 @@ import { createCss } from './commands/createCss.js'
 
 let newDirName = 'test-site-spin'
 export let cssDirectoryPath = `${newDirName}/styles`
+export let jsDirectoryPath = `${newDirName}/scripts`
 
 let htmlPath = `${newDirName}/index.html`
 let cssPath = `${cssDirectoryPath}/style.css`
@@ -20,5 +21,3 @@ const makeDir = async () => {
     }
 }
 makeDir()
-
-// console.log(newDirName)
