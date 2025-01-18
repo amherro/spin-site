@@ -1,10 +1,13 @@
 import fs from 'fs/promises'
-import { cssDirectoryPath } from '../index.js'
 
-let cssContent = `CSS content`
+let cssContent = '* {margin: 0};'
 
-export const createCss = async () => {
+export const createCss = async (path) => {
     // Create CSS folder and file
-    await fs.mkdir(cssDirectoryPath)
-    await fs.writeFile(`${cssDirectoryPath}/style.css`, cssContent, {flag: 'a+'})
+    try {
+        await fs.mkdir(path)
+        await fs.writeFile(`${path}/style.css`, cssContent, { flag: 'a+' })
+    } catch (error) {
+        if(error) throw error
+    }
 }

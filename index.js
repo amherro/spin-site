@@ -1,23 +1,35 @@
 import fs from 'fs/promises'
 import { createHtmlFile } from './commands/createHtml.js'
 import { createCss } from './commands/createCss.js'
+import { createJs } from './commands/createJs.js'
+import { createGo } from './commands/createGo.js'
 
 let newDirName = 'test-site-spin'
-export let cssDirectoryPath = `${newDirName}/styles`
-export let jsDirectoryPath = `${newDirName}/scripts`
 
-let htmlPath = `${newDirName}/index.html`
-let cssPath = `${cssDirectoryPath}/style.css`
-let jsPath = `${newDirName}/scripts/main.js`
+let _cssDirectoryPath = `${newDirName}/styles`
+let _jsDirectoryPath = `${newDirName}/scripts`
+
+let _htmlPath = `${newDirName}/index.html`
 
 // Create a new directory 
-const makeDir = async () => {
+const makeDir = async (projectType) => {
     try {
         await fs.mkdir(newDirName)
-        await createHtmlFile(htmlPath)
-        await createCss(cssPath)
+        switch (projectType) {
+            case 'Frontend Website':
+                await createHtmlFile(_htmlPath)
+                await createCss(_cssDirectoryPath)
+                await createJs(_jsDirectoryPath)
+                break;
+            case 'Go':
+                await createGo(newDirName)
+                break;
+            default:
+                throw new Error('Please select a project type')
+        }
     } catch (error) {
         if(error) throw error
     }
 }
-makeDir()
+
+makeDir('Frontend Website')
